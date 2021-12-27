@@ -1,66 +1,145 @@
-# iIndex_select_filter
-#------------------------Index, Select & Filter--------------------------------
-#Create dataframe :
-import pandas as pd
+#------------Basics Function---------------
 
-#Create a DataFrame
-d = {'Name':['Alisa','Bobby','Cathrine','Alisa','Bobby','Cathrine',
-            'Alisa','Bobby','Cathrine','Alisa','Bobby','Cathrine'],
-            'Exam':['Semester 1','Semester 1','Semester 1','Semester 1','Semester 1','Semester 1',
-                    'Semester 2','Semester 2','Semester 2','Semester 2','Semester 2','Semester 2'],
-                    'Subject':['Mathematics','Mathematics','Mathematics','Science','Science','Science',
-                               'Mathematics','Mathematics','Mathematics','Science','Science','Science'],
-                               'Score':[62,47,55,74,31,77,85,63,42,67,89,81]}
+#abs(): Returns the absolute value of a number.
+#  integer number     
 
-df = pd.DataFrame(d,columns=['Name','Exam','Subject','Score'])
-df
+integer = -20
+abs(integer)  
+print('Absolute value of -20 is:', abs(integer))  
 
-#View a column of the dataframe in pandas:
-df['Name']
+#  floating number  
 
-#View two columns of the dataframe in pandas:
-df[['Name','Score','Exam']]
+floating = -20.83  
+print('Absolute value of -20.83 is:', abs(floating))  
 
-#View first two rows of the dataframe in pandas:
-df[0:2]
+#all(): It returns true if all items passed in iterable object are true. 
+#Otherwise, it returns False.
+#This fxn accepts an iterable object (such as list, dictionary, etc.). 
+# all values true  
 
-#-------Filter in Pandas dataframe:--------------
-#View all rows where score greater than 70  
-df['Score'] > 70
-df[df['Score'] > 70]
+k = [1, 3, 4, 6]  
+print(all(k))
 
-#View all the rows where score greater than 70 and less than 85
-df[(df['Score'] > 70) & (df['Score'] < 85)]
+# all values false  
 
+k = [0, False]  
+print(all(k))  
 
-#-----------------Select in Pandas dataframe-----------------------------------
-#select row by using row number in pandas  with .iloc
-#.iloc [1:m, 1:n] – is used to select or index rows based on their position 
-#from 1 to m rows and 1 to n columns
+# one false value  
+k = [1, 3, 7, 0]  
+print(all(k))
 
-# select first 2 rows
-df.iloc[:2]
-# or
-df.iloc[:2,]
+# empty iterable  
+k = []  
+print(all(k)) 
 
-#select 3rd to 5th rows
-df.iloc[2:5]
-# or
-df.iloc[2:5,]
+#------------------------------------------------------------------------------------
 
-#select all rows starting from third row
-df.iloc[2:]
-# or
-df.iloc[2:,]
+#bool(): Converts a value to boolean(True or False)
+test1 = []  
+print(test1,'is',bool(test1)) 
 
-#Select column by using column number in pandas with .iloc
-# select first 2 columns
-df.iloc[:,:2]
-#select first 1st and 4th columns
-df.iloc[[2,4],[0,3]]
+test1 = [0]
+print(test1,'is',bool(test1))    
 
-#Select value by using row name and column name in pandas with .loc:
-#.loc [[Row_names],[ column_names]] –used to select or index rows or columns based on their name
+test1 = None  
+print(test1,'is',bool(test1))  
 
-#select value by row label and column label using loc
-df.loc[[1,2,4,8,11],['Name','Score']]
+test1 = 'Easy string'  
+print(test1,'is',bool(test1)) 
+
+#sum(): Used to get the sum of numbers of an iterable, i.e., list.
+
+list_1 = [1,2,4]  
+s = sum(list_1)  
+print(s)  
+
+s = sum(list_1, 10)  
+print(s) 
+
+#len(): Returns the length (the number of items) of an object.
+
+strA = 'Python'  
+print(len(strA))  
+
+#list() creates a list in python.
+# empty list  
+
+Gaurav = list()
+print(Gaurav)  
+
+#Converting string to list
+String = 'abcde'       
+print(list(String)) 
+
+#divmod(): Used to get quotient and remainder of two numbers. 
+#This function takes two numeric arguments and returns a tuple. 
+#Both arguments are required and numeric 
+# Calling function  
+result = divmod(10,2)  
+# Displaying result  
+print(result)  
+
+#dict(): Its a constructor which creates a dictionary. 
+# Calling function  
+result = dict() # returns an empty dictionary 
+print(result)
+
+result2 = dict(a=1,b=2)  
+# Displaying result  
+print(result2)  
+
+#set(): It is used to create a new set using elements passed during the call. 
+#It takes an iterable object as an argument and returns a new set object.
+# Calling function  
+result = set() # empty set  
+result2 = set('12')  
+result3 = set('javatpoint') 
+result4 = {1,2}
+print (result4)
+# Displaying result  
+print(result)  
+print(result2)  
+print(result3)  
+
+#pow(): Used to compute the power of a number.
+# positive x, positive y (x**y)  
+print(pow(4, 2))  
+
+# negative x, positive y  
+print(pow(-4, 2))  
+
+#tuple(): Used to create a tuple object.
+t1 = tuple()  
+print('t1=', t1)  
+
+# creating a tuple from a list 
+l =  [1, 6, 9]
+t2 = tuple(l)  
+print('t2=', t2)  
+
+# creating a tuple from a string  
+t1 = tuple('Java') 
+print('t1=',t1)  
+
+#----------------------------------------------------------------------
+#lambda()- Helps creating anonymous functions. 
+#Lambda functions can accept any number of arguments, 
+#but they can return only one value in the form of expression.
+
+#Multiple arguments to Lambda function
+x = lambda a,b:a+b 
+# a and b are the arguments and a+b is the expression which gets evaluated and returned.   
+print("Addition = ",x(20,10)) 
+
+#Program to filter out the list which contains numbers  divisible by 3.
+List = [1,2,3,4,10,123,22]  
+Oddlist = list(filter(lambda x:(x%3 == 0),List)) 
+# the list contains all the items of the list for which the lambda function evaluates to true  
+print(Oddlist) 
+
+#program to triple each number of the list using map  
+List = [1,2,3,4,10,123,22] 
+new_list = list(map(lambda x:x*3,List)) 
+# this will return the triple of each item of the list and add it to new_list  
+print(new_list)  
